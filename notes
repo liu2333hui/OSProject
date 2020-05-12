@@ -1,0 +1,19 @@
+LABEL_GDT
+
+
+LABEL_DESC_CODE32
+
+LABEL_DESC_VIDEO
+FFFF&FFFF = FFFF                ;SEGMENT LIMIT 15:0
+
+00008000&FFFF = 8000            ;BASE ADDRESS two bytes 15:0
+(8000 >> 2 bytes)&FF = 00       ;BASE ADDRESS one byte 23:16
+
+dw ((FFFF >> 8) & 0F00h) | (92 & 0F0FFh)
+ = (0F00)  |		;SEGMENT LIMIT 19:16
+(0092) 			;Other settings (Type = 2, S = 1, DPL_H = 1)
+= (0F92)
+
+(0100_0000_0000_0000 >> 24 bits = 00    ;BASE ADDRESS 31:24
+
+
